@@ -1,0 +1,8 @@
+*.db
+*.db-*
+*.exe
+*.test
+*.out
+*.prof
+
+*.backup

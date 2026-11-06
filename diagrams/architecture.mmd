@@ -1,0 +1,28 @@
+flowchart TD
+    A["USER / APPLICATION"]
+    B["CLI INTERFACE<br/>put · get · del · batch · serve"]
+    C["DATABASE ENGINE<br/>Put · Get · Delete · Batch"]
+
+    D["DATABASE MUTEX"]
+    E["COMPACTION MANAGER"]
+
+    F["WRITE-AHEAD LOG (WAL)<br/>Encode · Append · Checksum · Sync"]
+    G[("TEMP / BACKUP FILES<br/>.compact · .backup · marker")]
+
+    H[("DATABASE FILE<br/>Persistent transactions")]
+    I["RECOVERY ENGINE<br/>Scan · Validate · Repair tail"]
+    J["REBUILD INDEX"]
+    K[("IN-MEMORY INDEX<br/>Key → WAL location")]
+
+    A --> B
+    B --> C
+    C --> D
+    C --> E
+    D --> F
+    E --> G
+    F --> H
+    G --> H
+    H --> I
+    I --> J
+    J --> K
+    D --> K
